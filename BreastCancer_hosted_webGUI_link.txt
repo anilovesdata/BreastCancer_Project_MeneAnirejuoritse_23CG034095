@@ -2,5 +2,5 @@ Name: Mene Anirejuoritse
 Matric Number: 23CG034095
 Machine Learning Algorithm Used: Logistic Regression
 Model persistence method used: Joblib
-Live URL of the hosted application: https://your-app-name.streamlit.app
-GitHub repository link: https://github.com/yourusername/BreastCancer_Project_Adeboyin_matricNo
+Live URL of the hosted application:  https://breastcancer-project-meneanirejuoritse.onrender.com
+GitHub repository link: https://github.com/anilovesdata/BreastCancer_Project_MeneAnirejuoritse_23CG034095
