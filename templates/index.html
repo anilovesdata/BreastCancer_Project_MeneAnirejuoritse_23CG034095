@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Predictor (Educational)</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f8f9fa; }
+        .container { max-width: 700px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #333; }
+        .disclaimer { text-align: center; color: #d9534f; font-weight: bold; margin-bottom: 25px; }
+        form { display: grid; gap: 15px; }
+        label { font-weight: bold; }
+        input[type="number"] { padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 100%; }
+        .row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        button { background-color: #007bff; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #0056b3; }
+        .result { margin-top: 30px; padding: 20px; border-radius: 8px; text-align: center; font-size: 1.3em; }
+        .benign { background-color: #d4edda; color: #155724; }
+        .malignant { background-color: #f8d7da; color: #721c24; }
+        .error { color: #721c24; background-color: #f8d7da; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Breast Cancer Tumor Classifier</h1>
+        <p class="disclaimer">Educational demonstration only — NOT a medical diagnostic tool.<br>Always consult qualified medical professionals.</p>
+
+        <form method="POST">
+            <div class="row">
+                <div>
+                    <label for="radius">Mean Radius:</label>
+                    <input type="number" id="radius" name="radius" step="0.1" min="5" max="30" value="15.0" required>
+                </div>
+                <div>
+                    <label for="perimeter">Mean Perimeter:</label>
+                    <input type="number" id="perimeter" name="perimeter" step="1" min="40" max="200" value="90.0" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div>
+                    <label for="area">Mean Area:</label>
+                    <input type="number" id="area" name="area" step="10" min="100" max="2500" value="700.0" required>
+                </div>
+                <div>
+                    <label for="concavity">Mean Concavity:</label>
+                    <input type="number" id="concavity" name="concavity" step="0.01" min="0" max="0.5" value="0.15" required>
+                </div>
+            </div>
+
+            <div>
+                <label for="concave_points">Mean Concave Points:</label>
+                <input type="number" id="concave_points" name="concave_points" step="0.01" min="0" max="0.3" value="0.09" required>
+            </div>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+
+        {% if prediction %}
+            <div class="result {% if prediction == 'Benign' %}benign{% else %}malignant{% endif %}">
+                <strong>Prediction: {{ prediction }}</strong><br>
+                Confidence: {{ probability }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
